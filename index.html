@@ -191,7 +191,7 @@ footer{border-top:1px solid #E8DDD5;padding:1.2rem;text-align:center;font-size:1
   <div class="slabel">Get in touch</div>
   <div class="stitle">Request a quote</div>
   <div class="csub">Fill in the form and we'll get back to you within a few hours.</div>
-  <form onsubmit="handleSubmit(event)">
+  <form action="https://formspree.io/f/xeenadan" method="POST" onsubmit="handleSubmit(event)">
     <div class="frow">
       <input type="text" placeholder="First name" required>
       <input type="text" placeholder="Last name" required>
@@ -254,8 +254,15 @@ function setLang(lang,btn){
 }
 function handleSubmit(e){
   e.preventDefault();
-  document.getElementById('ok').style.display='block';
-  e.target.reset();
+  const form = e.target;
+  fetch('https://formspree.io/f/xeenadan', {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if(r.ok){ document.getElementById('ok').style.display='block'; form.reset(); }
+    else { alert('Something went wrong, please email us directly at hello@lilobuilds.nl'); }
+  }).catch(() => alert('Something went wrong, please email us directly at hello@lilobuilds.nl'));
 }
 </script>
 </body>
