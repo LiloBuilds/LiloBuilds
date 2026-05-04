@@ -193,11 +193,11 @@ footer{border-top:1px solid #E8DDD5;padding:1.2rem;text-align:center;font-size:1
   <div class="csub">Fill in the form and we'll get back to you within a few hours.</div>
   <form action="https://formspree.io/f/xeenadan" method="POST" onsubmit="handleSubmit(event)">
     <div class="frow">
-      <input type="text" placeholder="First name" required>
-      <input type="text" placeholder="Last name" required>
+      <input type="text" name="firstname" placeholder="First name" required>
+      <input type="text" name="lastname" placeholder="Last name" required>
     </div>
-    <input type="email" placeholder="Email address" required>
-    <select>
+    <input type="email" name="email" placeholder="Email address" required>
+    <select name="service">
       <option>Select a service...</option>
       <option>General repairs</option>
       <option>Carpentry & woodwork</option>
@@ -213,7 +213,7 @@ footer{border-top:1px solid #E8DDD5;padding:1.2rem;text-align:center;font-size:1
       <option>Building work</option>
       <option>Other</option>
     </select>
-    <textarea placeholder="Describe your job briefly..." rows="3" required></textarea>
+    <textarea name="message" placeholder="Describe your job briefly..." rows="3" required></textarea>
     <button type="submit" class="fsub">Send request</button>
     <div class="ok" id="ok">Thanks! We'll get back to you within a few hours.</div>
   </form>
