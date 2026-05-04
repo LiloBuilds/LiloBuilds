@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilo Builds — Fetch. Fix. Finished.</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;color:#2C1810;background:#FAF7F2}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid #E8DDD5;position:sticky;top:0;background:#FAF7F2;z-index:50}
+.logo{font-size:18px;font-weight:600;color:#2C1810}
+.logo span{color:#7BA7BC}
+.nav-links{display:flex;gap:1.2rem;font-size:13px}
+.nav-links a{text-decoration:none;color:#8B6355}
+.nav-links a:hover{color:#2C1810}
+.lang{display:flex;gap:6px;align-items:center}
+.lang button{font-size:11px;padding:3px 9px;border-radius:99px;border:1px solid #D4C4BC;background:transparent;color:#8B6355;cursor:pointer}
+.lang button.on{background:#5C3D2E;color:#FAF7F2;border-color:#5C3D2E}
+.cta{background:#5C3D2E;color:#FAF7F2;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer}
+.cta:hover{background:#2C1810}
+
+/* HERO */
+.hero-wrap{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.45)}
+.hero-content{position:relative;z-index:2;max-width:640px;margin:0 auto;padding:4rem 1.5rem;text-align:center;color:#FAF7F2}
+.badge{display:inline-block;background:rgba(92,61,46,0.4);color:#FAF7F2;border:1px solid rgba(250,247,242,0.3);font-size:11px;border-radius:99px;padding:3px 12px;margin-bottom:1rem}
+h1{font-size:42px;font-weight:600;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.5px}
+h1 em{color:#7BA7BC;font-style:normal}
+.hero-content p{font-size:16px;color:rgba(250,247,242,0.85);line-height:1.7;margin-bottom:1.8rem}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn1{background:#5C3D2E;color:#FAF7F2;border:none;border-radius:6px;padding:11px 22px;font-size:14px;font-weight:500;cursor:pointer}
+.btn1:hover{background:#2C1810}
+.btn2{background:transparent;color:#FAF7F2;border:1px solid rgba(250,247,242,0.4);border-radius:6px;padding:11px 22px;font-size:14px;cursor:pointer}
+.btn2:hover{background:rgba(250,247,242,0.1)}
+
+/* LILO SECTION */
+.lilo{background:#fff;border-top:1px solid #E8DDD5;border-bottom:1px solid #E8DDD5;padding:2.5rem 1.5rem}
+.lilo-in{max-width:700px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start}
+.lilo-pic{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #7BA7BC;flex-shrink:0}
+.lilo-pic-placeholder{width:120px;height:120px;border-radius:50%;background:#E8DDD5;border:3px solid #7BA7BC;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#8B6355;text-align:center;padding:8px;line-height:1.4}
+.lilo-name{font-size:17px;font-weight:600;margin-bottom:2px;color:#2C1810}
+.lilo-cap{font-size:11px;color:#7BA7BC;font-weight:500;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em}
+.lilo-bio{font-size:14px;color:#5C3D2E;line-height:1.7}
+.lilo-bio p{margin-bottom:10px}
+.lilo-bio p:last-child{margin-bottom:0}
+
+/* OZ SECTION */
+.oz-section{background:#F2EDE8;border-bottom:1px solid #E8DDD5;padding:2.5rem 1.5rem}
+.oz-in{max-width:700px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start;flex-direction:row-reverse}
+.oz-pic{width:200px;height:200px;border-radius:12px;object-fit:cover;object-position:top;border:3px solid #5C3D2E;flex-shrink:0}
+.oz-text h3{font-size:17px;font-weight:600;margin-bottom:4px;color:#2C1810}
+.oz-text p{font-size:14px;color:#5C3D2E;line-height:1.7;margin-bottom:8px}
+
+/* SERVICES */
+.services{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem}
+.slabel{font-size:11px;color:#8B6355;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.stitle{font-size:22px;font-weight:600;margin-bottom:1.5rem;color:#2C1810}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.card{background:#fff;border:1px solid #E8DDD5;border-radius:10px;padding:1rem}
+.card:hover{border-color:#7BA7BC;transform:translateY(-2px);transition:all 0.2s ease}
+.icon{font-size:22px;margin-bottom:8px}
+.card h4{font-size:13px;font-weight:500;margin-bottom:4px;color:#2C1810}
+.card p{font-size:12px;color:#8B6355;line-height:1.5}
+
+/* PRICING */
+.pricing{background:#fff;border-top:1px solid #E8DDD5;padding:2.5rem 1.5rem}
+.pricing-in{max-width:780px;margin:0 auto;display:flex;gap:2rem;align-items:center}
+.pricing-text{flex:1;text-align:center}
+.pricing-photo{width:260px;flex-shrink:0;border-radius:12px;overflow:hidden}
+.pricing-photo img{width:100%;height:320px;object-fit:cover;object-position:center top;border-radius:12px;border:3px solid #E8DDD5}
+.pcard{background:#FAF7F2;border:1px solid #E8DDD5;border-radius:12px;padding:1.8rem;margin-top:1.2rem}
+.price{font-size:38px;font-weight:600;color:#5C3D2E}
+.price span{font-size:16px;color:#8B6355;font-weight:400}
+.prow{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid #E8DDD5;text-align:left}
+.tick{width:18px;height:18px;border-radius:50%;background:#E8DDD5;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#5C3D2E}
+.prow span{font-size:13px;color:#5C3D2E}
+
+/* CONTACT */
+.contact{max-width:520px;margin:0 auto;padding:2.5rem 1.5rem}
+.csub{font-size:13px;color:#8B6355;margin-bottom:1.2rem}
+form{display:flex;flex-direction:column;gap:10px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select,textarea{padding:9px 12px;border:1px solid #D4C4BC;border-radius:6px;font-size:13px;font-family:inherit;width:100%;background:#fff;color:#2C1810}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#7BA7BC}
+textarea{resize:vertical}
+.fsub{background:#5C3D2E;color:#FAF7F2;border:none;border-radius:6px;padding:11px;font-size:14px;font-weight:500;cursor:pointer;width:100%}
+.fsub:hover{background:#2C1810}
+.ok{display:none;background:#E8DDD5;border:1px solid #C4A898;border-radius:6px;padding:10px 14px;font-size:13px;color:#2C1810}
+
+.legal{background:#F2EDE8;border-top:1px solid #E8DDD5;padding:1.2rem;text-align:center;font-size:12px;color:#8B6355}
+.legal a{color:#5C3D2E;text-decoration:underline;cursor:pointer}
+footer{border-top:1px solid #E8DDD5;padding:1.2rem;text-align:center;font-size:12px;color:#8B6355;background:#FAF7F2}
+
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(44,24,16,0.6);z-index:200;align-items:center;justify-content:center;padding:1rem}
+.overlay.open{display:flex}
+.modal{background:#FAF7F2;border-radius:12px;padding:1.8rem;max-width:480px;width:100%;max-height:80vh;overflow-y:auto}
+.modal h3{font-size:18px;font-weight:600;margin-bottom:1rem;color:#2C1810}
+.modal p{font-size:13px;color:#5C3D2E;line-height:1.7;margin-bottom:8px}
+.mclose{background:#E8DDD5;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer;margin-top:8px;color:#2C1810}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lilo Builds<span>.</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="lang">
+    <button class="on" onclick="setLang('en',this)">EN</button>
+    <button onclick="setLang('nl',this)">NL</button>
+    <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+  </div>
+</nav>
+
+<!-- HERO — replace hero-lilo.jpg with photo 11 (looking up, beautiful light) -->
+<div class="hero-wrap">
+  <img class="hero-img" src="hero-lilo.jpg" alt="Lilo" onerror="this.style.background='#5C3D2E';this.style.opacity='1'">
+  <div class="hero-content">
+    <div class="badge">Amsterdam handyman service</div>
+    <h1>Fetch. Fix. <em>Finished.</em></h1>
+    <p>Carpentry, repairs, renovation, painting and much more. Amsterdam's friendliest handyman service — reliable, skilled and always on time.</p>
+    <div class="btns">
+      <button class="btn1" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+      <button class="btn2" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See services</button>
+    </div>
+  </div>
+</div>
+
+<!-- LILO — replace lilo-profile.jpg with photo 2 (sitting portrait) -->
+<div class="lilo">
+  <div class="lilo-in">
+    <img class="lilo-pic" src="lilo-profile.jpg" alt="Lilo" onerror="this.outerHTML='<div class=\'lilo-pic-placeholder\'>Add<br>Lilo\'s<br>photo</div>'">
+    <div>
+      <div class="lilo-name">Meet Lilo</div>
+      <div class="lilo-cap" style="color:#A0766A;">Quality control. Napping on the job since 2021.</div>
+      <div class="lilo-bio">
+        <p>My dog, and the inspiration behind it all. She's been napping on the job since 2021, occasionally stepping in as quality control and general morale support.</p>
+        <p>The hands and skills behind the work are mine. I'm Oz, an Amsterdam-based craftsman with over 10 years of hands-on experience in carpentry, repairs, building work and furniture.</p>
+        <p>I started this company to make building and maintenance feel more straightforward and approachable. Clear communication, transparent costs, easy planning, and honest advice.</p>
+        <p>Fetch. Fix. Finished. I'll sort it, start to finish, and leave you with something done properly.</p>
+        <p>And if you're after simple, honest work and don't mind helping keep Lilo well fed, I'm your guy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="services" id="services">
+  <div class="slabel">What we do</div>
+  <div class="stitle">Services</div>
+  <div class="grid">
+    <div class="card"><div class="icon">🔧</div><h4>General repairs</h4><p>Leaky taps, squeaky doors, broken fittings — no job too small.</p></div>
+    <div class="card"><div class="icon">🪵</div><h4>Carpentry & woodwork</h4><p>Custom shelving, built-ins, frames and bespoke wooden pieces.</p></div>
+    <div class="card"><div class="icon">📦</div><h4>Furniture assembly</h4><p>IKEA and beyond — assembled quickly, correctly and stress-free.</p></div>
+    <div class="card"><div class="icon">🖌️</div><h4>Painting & finishing</h4><p>Walls, woodwork, ceilings — clean prep and quality finish every time.</p></div>
+    <div class="card"><div class="icon">🏗️</div><h4>Renovation & remodelling</h4><p>Small to medium renovations, layout changes and room transformations.</p></div>
+    <div class="card"><div class="icon">🔌</div><h4>Installation work</h4><p>Fitting appliances, fixtures, shelving and general installations.</p></div>
+    <div class="card"><div class="icon">⚡</div><h4>Electrics</h4><p>Light fittings, sockets, switches and minor electrical work.</p></div>
+    <div class="card"><div class="icon">🪴</div><h4>Garden work</h4><p>Decking, fencing, raised beds and outdoor builds.</p></div>
+    <div class="card"><div class="icon">🛁</div><h4>Restoration</h4><p>Bringing old features, furniture and surfaces back to life.</p></div>
+    <div class="card"><div class="icon">🏠</div><h4>Interior work</h4><p>Finishing touches, styling builds and interior improvements.</p></div>
+    <div class="card"><div class="icon">🏪</div><h4>Display & shop fitting</h4><p>Professional retail display builds and shop fit-out work.</p></div>
+    <div class="card"><div class="icon">🧱</div><h4>Building work</h4><p>Structural small works, tiling, flooring and general building.</p></div>
+  </div>
+</div>
+
+<div class="pricing" id="pricing">
+  <div class="pricing-in">
+    <div class="pricing-photo">
+      <img src="oz-lilo.jpg" alt="Oz and Lilo" onerror="this.style.display='none'">
+    </div>
+    <div class="pricing-text">
+      <div class="slabel">Transparent pricing</div>
+      <div class="stitle">Simple, honest rates</div>
+      <div class="pcard">
+        <div class="price">from €60 <span>per hour</span></div>
+        <div class="prow"><div class="tick">✓</div><span>Free initial quote by email</span></div>
+        <div class="prow"><div class="tick">✓</div><span>Materials charged at cost, no markup</span></div>
+        <div class="prow"><div class="tick">✓</div><span>Minimum 1 hour booking</span></div>
+        <div class="prow"><div class="tick">✓</div><span>Serving Amsterdam and surroundings</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact" id="contact">
+  <div class="slabel">Get in touch</div>
+  <div class="stitle">Request a quote</div>
+  <div class="csub">Fill in the form and we'll get back to you within a few hours.</div>
+  <form action="https://formspree.io/f/xeenadan" method="POST">
+    <div class="frow">
+      <input type="text" name="firstname" placeholder="First name" required>
+      <input type="text" name="lastname" placeholder="Last name" required>
+    </div>
+    <input type="email" name="email" placeholder="Email address" required>
+    <select name="service">
+      <option>Select a service...</option>
+      <option>General repairs</option>
+      <option>Carpentry & woodwork</option>
+      <option>Furniture assembly</option>
+      <option>Painting & finishing</option>
+      <option>Renovation & remodelling</option>
+      <option>Installation work</option>
+      <option>Electrics</option>
+      <option>Garden work</option>
+      <option>Restoration</option>
+      <option>Interior work</option>
+      <option>Display & shop fitting</option>
+      <option>Building work</option>
+      <option>Other</option>
+    </select>
+    <textarea name="message" placeholder="Describe your job briefly..." rows="3" required></textarea>
+    <button type="submit" class="fsub">Send request</button>
+  </form>
+</div>
+
+<div class="legal">
+  <div>Lilo Builds is a trading name of Studio OFS · KVK: 80959431 · Amsterdam</div>
+  <div style="margin-top:4px"><a onclick="document.getElementById('pm').classList.add('open')">Privacy statement</a></div>
+</div>
+
+<footer>© 2025 Lilo Builds · Amsterdam · <a href="mailto:hello@lilobuilds.nl" style="color:inherit">hello@lilobuilds.nl</a></footer>
+
+<div class="overlay" id="pm">
+  <div class="modal">
+    <h3>Privacy Statement</h3>
+    <p>Lilo Builds (trading name of Studio OFS) takes your privacy seriously.</p>
+    <p>What we collect: your name and email address via the contact form, solely to respond to your enquiry.</p>
+    <p>How we use it: only to respond to your request. We do not share your data with third parties.</p>
+    <p>Your rights: you can access, correct or delete your data at any time. Contact hello@lilobuilds.nl.</p>
+    <button class="mclose" onclick="document.getElementById('pm').classList.remove('open')">Close</button>
+  </div>
+</div>
+
+<script>
+function setLang(lang,btn){
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  var t={
+    en:{badge:'Amsterdam handyman service',cta:'Get a quote',sub:"Carpentry, repairs, renovation, painting and much more. Amsterdam's friendliest handyman service — reliable, skilled and always on time.",btn1:'Get a quote',btn2:'See services',navCta:'Get a quote'},
+    nl:{badge:'Klussenbedrijf Amsterdam',cta:'Vraag offerte',sub:'Timmerwerk, reparaties, verbouwingen, schilderwerk en veel meer. Het vriendelijkste klussenbedrijf van Amsterdam — betrouwbaar, vakkundig en altijd op tijd.',btn1:'Vraag een offerte',btn2:'Bekijk diensten',navCta:'Vraag offerte'}
+  };
+  var d=t[lang];
+  document.querySelector('.badge').textContent=d.badge;
+  document.querySelector('.hero-content p').textContent=d.sub;
+  document.querySelector('.btn1').textContent=d.btn1;
+  document.querySelector('.btn2').textContent=d.btn2;
+  document.querySelector('.cta').textContent=d.navCta;
+}
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  fetch('https://formspree.io/f/xeenadan', {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if(r.ok){ document.getElementById('ok').style.display='block'; form.reset(); }
+    else { alert('Something went wrong, please email us directly at hello@lilobuilds.nl'); }
+  }).catch(() => alert('Something went wrong, please email us directly at hello@lilobuilds.nl'));
+}
+</script>
+</body>
+</html>
